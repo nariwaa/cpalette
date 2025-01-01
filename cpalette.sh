@@ -1,4 +1,3 @@
-#!/bin/bash
 
 # Functions 
 # -> options
@@ -51,7 +50,7 @@ dots() {
   for color in {31..37}; do
       echo -en "\e[${color}m●\e[0m   "  # Display a block of background color
   done
-  echo -en "\n\n"
+  echo -en "\n"
 }
 
 squares() {
@@ -60,6 +59,16 @@ squares() {
       echo -en "\e[${color}m  \e[0m  "  # Display a block of background color
   done
   echo -en "\n"
+}
+
+cards() {
+  echo -en "\n"
+  for i in {1..7}; do
+    for color in {40..47}; do
+        echo -en "\e[${color}m          \e[0m  "  # Display a block of background color
+    done
+  echo -en "\n"
+  done
 }
 
 # manages options
@@ -104,6 +113,10 @@ for arg in "$@"; do
       ;;
     squares)
       squares
+      exit 1
+      ;;
+    cards)
+      cards
       exit 1
       ;;
     *)
