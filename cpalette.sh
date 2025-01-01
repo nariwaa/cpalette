@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# #Functions 
-# options
+# Functions 
+# -> options
 debug() {
   # Display basic colors
   echo -e "\nBasic Colors:"
@@ -24,11 +24,11 @@ debug() {
   done
 
   # Display background colors
-  echo -e "\n\nBackground Colors:"
+  echo -e "\n\nBackground Colors:\n"
   for color in {40..47}; do
     echo -en "\e[${color}m   \e[0m "  
   done
-  echo -e "\n\nText + Background Colors"
+  echo -e "\n\nText + Background Colors\n"
   for color in {40..47}; do
     echo -en "\e[${color}m BG ${color}\e[0m  "  
   done
@@ -44,7 +44,7 @@ show_help() {
     echo "  -h, --help   Show this help message"
 }
 
-# arguments
+# -> arguments
 
 dots() {
   echo -en "\n   "
@@ -88,23 +88,27 @@ shift $((OPTIND -1))
 for arg in "$@"; do
     case "$arg" in
     --debug)
-        debug
-        ;;
+      debug
+      ;;
     --help)
-        show_help
-        exit 0
-        ;;
+      show_help
+      exit 0
+      ;;
     --*)
-        echo "Invalid option: $arg" >&2
-        exit 1
-        ;;
+      echo "Invalid option: $arg" >&2
+      exit 1
+      ;;
     dots)
-        dots
-        exit 1
-        ;;
+      dots
+      exit 1
+      ;;
     squares)
-        squares
-        exit 1
-        ;;
+      squares
+      exit 1
+      ;;
+    *)
+      echo "Unknown command: $arg" >&2
+      exit 1
+      ;;
   esac
 done
