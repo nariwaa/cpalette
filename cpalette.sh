@@ -1,3 +1,4 @@
+#!/bin/sh
 
 # Functions 
 # -> options
@@ -71,6 +72,25 @@ cards() {
   done
 }
 
+flowers() {
+  echo -en "\n"
+  # flowers pattern :
+  flower1=(" _,-._  " "/ \_/ \ " ">-(_)-< " "\_/ \_/ " "  \`-'   ")
+  flower2=("    _ _  __" "   ( | )/_/" "__( >✱< )  " "\ \( | )   " " ¯¯ ¯ ¯    ")
+
+  max_height=${#flower1[@]}
+
+  for ((i=0; i<max_height; i++)); do
+      echo -en "\e[1;91m${flower1[$i]}\e[0m  "
+      echo -en "\e[1;92m${flower1[$i]}\e[0m  "
+      echo -en "\e[1;93m${flower2[$i]}\e[0m  "
+      echo -en "\e[1;94m${flower1[$i]}\e[0m  "
+      echo -en "\e[1;95m${flower1[$i]}\e[0m  "
+      echo -en "\e[1;96m${flower2[$i]}\e[0m  "
+      echo -e "\e[1;97m${flower1[$i]}\e[0m"
+  done
+}
+
 # manages options
 
 # Short options only
@@ -117,6 +137,10 @@ for arg in "$@"; do
       ;;
     cards)
       cards
+      exit 1
+      ;;
+    flowers)
+      flowers
       exit 1
       ;;
     *)
