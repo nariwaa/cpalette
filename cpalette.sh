@@ -81,13 +81,31 @@ flowers() {
   max_height=${#flower1[@]}
 
   for ((i=0; i<max_height; i++)); do
-      echo -en "\e[1;91m${flower1[$i]}\e[0m  "
-      echo -en "\e[1;92m${flower1[$i]}\e[0m  "
-      echo -en "\e[1;93m${flower2[$i]}\e[0m  "
-      echo -en "\e[1;94m${flower1[$i]}\e[0m  "
-      echo -en "\e[1;95m${flower1[$i]}\e[0m  "
-      echo -en "\e[1;96m${flower2[$i]}\e[0m  "
-      echo -e "\e[1;97m${flower1[$i]}\e[0m"
+    echo -en "\e[1;91m${flower1[$i]}\e[0m  "
+    echo -en "\e[1;92m${flower1[$i]}\e[0m  "
+    echo -en "\e[1;93m${flower2[$i]}\e[0m  "
+    echo -en "\e[1;94m${flower1[$i]}\e[0m  "
+    echo -en "\e[1;95m${flower1[$i]}\e[0m  "
+    echo -en "\e[1;96m${flower2[$i]}\e[0m  "
+    echo -e "\e[1;97m${flower1[$i]}\e[0m"
+  done
+}
+
+palette() {
+  echo -en "\n"
+
+  block=("█████" "█████" "█████" "█████" "█████")
+
+  max_height=${#block[@]}
+
+  for ((i=0; i<max_height; i++)); do
+    echo -en "\e[1;91m${block[$i]}\e[0m  "
+    echo -en "\e[1;92m${block[$i]}\e[0m  "
+    echo -en "\e[1;93m${block[$i]}\e[0m  "
+    echo -en "\e[1;94m${block[$i]}\e[0m  "
+    echo -en "\e[1;95m${block[$i]}\e[0m  "
+    echo -en "\e[1;96m${block[$i]}\e[0m  "
+    echo -e "\e[1;97m${block[$i]}\e[0m"
   done
 }
 
@@ -141,6 +159,10 @@ for arg in "$@"; do
       ;;
     flowers)
       flowers
+      exit 1
+      ;;
+    palette)
+      palette
       exit 1
       ;;
     *)
