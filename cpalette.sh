@@ -39,9 +39,19 @@ debug() {
 } 
 
 show_help() {
-    echo "Usage: $0 [-d|--debug] [-h|--help]"
-    echo "  -d, --debug  Display debug information"
-    echo "  -h, --help   Show this help message"
+  echo "Usage: $0 [-d|--debug] [-h|--help]"
+  echo "  -a, --all    Show every patterns"
+  echo "  -h, --help   Show this help message"
+  echo "  -d, --debug  Display debug information"
+}
+
+show_all() {
+  echo "All pattern :"
+  echo "  - dots"
+  echo "  - squares"
+  echo "  - cards"
+  echo "  - flowers"
+  echo "  - palette"
 }
 
 # -> arguments
@@ -112,62 +122,78 @@ palette() {
 # manages options
 
 # Short options only
-while getopts ":dh" opt; do
+while getopts ":dha" opt; do
   case ${opt} in
     d )
-        debug
-        ;;
+      debug
+      ;;
     h )
-        show_help
-        exit 0
-        ;;
+      show_help
+      exit 0
+      ;;
+    a )
+      show_all
+      exit 0
+      ;;
     \? )
-        echo "Invalid option: -$OPTARG" >&2
-        exit 1
-        ;;
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
   esac
 done
 
 # Shift past the options processed by getopts
 shift $((OPTIND -1))
 
+# Handle if nothing
+if [ "$1" = "" ]; then
+  show_help
+  exit 1
+fi
+  
 # Handle long options and else
 for arg in "$@"; do
-    case "$arg" in
-    --debug)
-      debug
-      ;;
-    --help)
-      show_help
-      exit 0
-      ;;
-    --*)
-      echo "Invalid option: $arg" >&2
-      exit 1
-      ;;
-    dots)
-      dots
-      exit 1
-      ;;
-    squares)
-      squares
-      exit 1
-      ;;
-    cards)
-      cards
-      exit 1
-      ;;
-    flowers)
-      flowers
-      exit 1
-      ;;
-    palette)
-      palette
-      exit 1
-      ;;
-    *)
-      echo "Unknown command: $arg" >&2
-      exit 1
-      ;;
+  case "$arg" in
+  --debug)
+    debug
+    ;;
+  --help)
+    show_help
+    exit 0
+    ;;
+  --all)
+    show_all
+    exit 0
+    ;;
+  --*)
+    echo "Invalid option: $arg" >&2
+    exit 1
+    ;;
+  dots)
+    dots
+    exit 1
+    ;;
+  squares)
+    squares
+    exit 0
+    ;;
+  cards)
+    cards
+    exit 0
+    ;;
+  flowers)
+    flowers
+    exit 0
+    ;;
+  palette)
+    palette
+    exit 0
+    ;;
+  *)
+    echo "Unknown command: $arg" >&2
+    echo "  do -h or --help to show help"
+    echo "  do -a or --all to show all patterns"
+    exit 1
+    ;;
   esac
 done

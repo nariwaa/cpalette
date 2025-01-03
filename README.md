@@ -12,5 +12,6 @@ CLI tool to show off your terminal color scheme in multiple ways!
     - [ ] README.MD
         - [ ] logo
         - [ ] make it readable
-    - [ ] add error code / do -h or -a when command is empty
-    - [ ] add -a 
+    - [x] add error code / do -h or -a when command is empty
+    - [x] add -a 
+    - [ ] figure out auto completion
