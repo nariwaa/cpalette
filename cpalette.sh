@@ -48,6 +48,7 @@ show_help() {
 show_all() {
   echo "All pattern :"
   echo "  - dots"
+  echo "  - small-dots"
   echo "  - squares"
   echo "  - cards"
   echo "  - flowers"
@@ -59,7 +60,15 @@ show_all() {
 dots() {
   echo -en "\n   "
   for color in {31..37}; do
-      echo -en "\e[${color}m●\e[0m   "  # Display a block of background color
+      echo -en "\e[${color}m◖◗\e[0m   "  # Display a block of background color
+  done
+  echo -en "\n"
+}
+
+smalldots() {
+  echo -en "\n   "
+  for color in {31..37}; do
+      echo -en "\e[${color}m●\e[0m  "  # Display a block of background color
   done
   echo -en "\n"
 }
@@ -171,6 +180,10 @@ for arg in "$@"; do
     ;;
   dots)
     dots
+    exit 1
+    ;;
+  small-dots)
+    smalldots
     exit 1
     ;;
   squares)
